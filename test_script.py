@@ -27,14 +27,10 @@ l = obstacles.Light(0.5, r, "green", "traffic light") #args are (s, road, color)
 print "instantiated light", l.getName(), " with s, road, color ", l.getS(), l.getRoad().getName(), l.getColor()
 
 dt = time_stepper.TimeStepper()
-#print "dt ",dt.getDt()
 for ii in range(0, 10):
-    c.move( float(dt.getDt()) )
-    c2.move( float(dt.getDt()) )
-    r._orderObstacles()
-    c.getNearestObstacle()
-#    print c2.getS()
-#    print "now road ", c.getRoad().getName(), " has an obstacle list of ", c.getRoad().getObstacles()
-#    for obstacle in c.getRoad().getObstacles():
-#        print "   ", obstacle.getName(), obstacle.getS()
+    r.moveAll( dt.getDt() )
+
+    no = c.getNearestObstacle()  # find the obstacle immediately in front of car c (sexy blue audi)
+    if no != None:  # the frontmost obstacle has no nearest obstacle--return None in this case
+        print c.getNearestObstacle().getName(), " is the obstacle in front of ", c.getName()
 

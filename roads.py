@@ -7,7 +7,6 @@ def y(s):
     return float(s+3)
 
 class Road:
-    """ base class for a road """
     def __init__(self, x_func, y_func, name="El Camino"):
         self.obs_list = None
         self.x_func = x_func
@@ -28,19 +27,30 @@ class Road:
     def getName(self):
         return self.name
 
-    ### change to take an obstacle, not an s and type
+    def getObstacles(self):
+        return self.obs_list
+
+    def moveAll(self, dt):
+        """ moves all the obstacles on the road (except lights), then reorders by S """
+        for obstacle in self.getObstacles():
+            if obstacle.getType() != "Light": #traffic lights don't move
+                obstacle.move(dt)
+        self._orderObstacles()
+    
+
     def _addObstacle(self, obstacle):
+        """ when you instantiate a car or light, you correspondingly
+            add an obstacle to the road """
         if self.obs_list == None:
             self.obs_list = []
         self.obs_list.append( obstacle )
 
     def _orderObstacles(self):
+        """ order the obstacles in the road by increasing S """
         s_list = []
         for item in self.obs_list:
             s_list.append( (float(item.getS()), item) )
-        sorted(s_list)
         self.obs_list = [ii[1] for ii in sorted(s_list)]
 
-    def getObstacles(self):
-        return self.obs_list
 
+    """ base class for a road """

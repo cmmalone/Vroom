@@ -24,6 +24,21 @@ class Obstacle:
     def getPos(self): # (x,y) coordinates along road
         return self.road.getPos(self.s) # get position by asking road
 
+    def getNearestObstacle(self):
+        obstacle_list = self.road.getObstacles()
+        ii = 0
+        while ii < len(obstacle_list):
+            if obstacle_list[ii] == self: # find myself in the list 
+                ### if self is the front car on the road, no obstacles to worry about
+                if ii == len(obstacle_list)-1:  
+                    print obstacle_list[ii].getName(), " is the front obstacle in the road"
+                    return None
+                ### else return the obstacle in front of self
+                else:
+                    return obstacle_list[ii+1]
+            ii += 1
+
+
 class Light(Obstacle):
     """ class for lights, obstacles with vel=0 and a color status """
     def __init__(self, s, road, color, name="light"):
@@ -34,7 +49,6 @@ class Light(Obstacle):
         return self.color
     
 class Car(Obstacle):
-    """ class for cars """
     def __init__(self, s, road, vel, name="car"):
         Obstacle.__init__(self, s, road, "Car", name)
         self.vel = vel  # a car has a velocity 
@@ -45,9 +59,4 @@ class Car(Obstacle):
     def move(self, dt):
         self.s = self.s + self.vel * dt
 
-    def getNearestObstacle(self):
-        obstacle_list = self.road.getObstacles()
-#        print obstacle_list
-#        for ii in range(0, len(obstacle_list) ):
-#            if obstacle_list[ii] == self and ii != len(obstacle_list):
-#                print obstacle_list[ii].getName(), obstacle_list[ii].getS(), obstacle_list[ii+1].getName(), obstacle_list[ii+1].getS()
+    """ class for cars """

@@ -2,4 +2,41 @@ This is a project to simulate traffic, working name "Vroom"
 
 __author__ = Katie Malone (cmmalone.158@gmail.com)
 
-7 Aug 2013: Github repo set up, obstacles, roads, time_stepper and test_script uploaded
+Instructions for running:
+    $> python test_script.py
+
+    test_script.py is my (KM) main working file for testing functionality
+        of the methods as I go.  It will likely change a lot as we go.
+        Current output gives some print statements as I instantiate one
+        light and 2 cars (named 'stang and sexy blue audi).
+        The sexy blue audi starts out behind the 'stang but has a higher
+        velocity, so eventually it overtakes and becomes the front 
+        obstacle on the road
+
+    Classes and Methods:
+        Obstacle (base class for cars and light)
+            __init__(self, s, road, type, name="obstacle"):
+            getS(self): # position along the road
+            getType(self):  # currently either light or car
+            getRoad(self):
+            getName(self):
+            getPos(self): # (x,y) coordinates along road
+            getNearestObstacle(self):  # returns nearest obstacle 
+        Light
+            __init__(self, s, road, color, name="light"):
+            getColor(self):
+        Car
+            def __init__(self, s, road, vel, name="car"):
+            def getVel(self):
+            def move(self, dt):
+        Road (defined as x(s) and y(s), has obstacles on it)
+            __init__(self, x_func, y_func, name="El Camino"):
+            getXFunc(self):
+            getYFunc(self):
+            getPos(self, s): # S->(x,y)
+            getName(self):
+            getObstacles(self):  # list of all obstacles on the road
+            moveAll(self, dt): # moves all obstacles on a road, and re-orders them
+            _addObstacle(self, obstacle): # can only add obstacles by instantiating them
+            _orderObstacles(self):  # only order obstacles during moveAll
+        TimeStepper (ticks off time increments for moving cars, etc.)
