@@ -5,3 +5,9 @@
         branched, whatever)
     README gives startup instructions and summarizes classes and methods
 
+11 Aug 2013: KM
+    Moved instantiation of roads and cars into roads_init and obstacles_init, in anticipation
+        of these becoming larger files where whole road networks and fleets of cars can be
+        initialized
+    Added a terminal obstacle that gets added to each road upon instantiation, so that calling
+        getNearestObstacle() on the front obstacle doesn't make the code break

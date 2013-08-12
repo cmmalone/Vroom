@@ -21,15 +21,17 @@ Instructions for running:
             getRoad(self):
             getName(self):
             getPos(self): # (x,y) coordinates along road
-            getNearestObstacle(self):  # returns nearest obstacle 
+            getNearestObstacle(self):  # returns nearest obstacle
+            Print(self): # prints name, s for obstacle and its nearest obstacle 
         Light
             __init__(self, s, road, color, name="light"):
             getColor(self):
+            changeColor(self):
         Car
-            def __init__(self, s, road, vel, name="car"):
-            def getVel(self):
-            def move(self, dt):
-        Road (defined as x(s) and y(s), has obstacles on it)
+            __init__(self, s, road, vel, name="car"):
+            getVel(self):
+            move(self, dt):
+        Road (defined as x(s) and y(s), has obstacles on it, including a terminal obstacle)
             __init__(self, x_func, y_func, name="El Camino"):
             getXFunc(self):
             getYFunc(self):

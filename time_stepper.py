@@ -1,4 +1,5 @@
 #!/urs/bin/python
+__author__ = "Katie Malone (cmmalone.158@gmail.com)"
 
 class TimeStepper():
     def __init__(self, frame_rate=10., speedup_factor=1.):
@@ -15,5 +16,3 @@ class TimeStepper():
     def getDt(self):
         return self.dt
 
-    def oneStepForward(self):
-        return self

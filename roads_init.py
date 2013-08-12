@@ -7,7 +7,7 @@ def initElCamino():
     def x(s):
         return float(s/2)
     def y(s):
-        return float(s+3)
+        return float(2)
     r = roads.Road(x,y)
     return r
 
